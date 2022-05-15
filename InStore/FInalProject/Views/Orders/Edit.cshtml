@@ -1,0 +1,82 @@
+﻿@model main.Models.Orders
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Order</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="order_id" />
+            <div class="form-group">
+                <label asp-for="customer_id" class="control-label">Customer</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("customer_id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.customer_id)
+                </div>
+            </div>
+             <div class="form-group">
+            <label asp-for="order_status" class="control-label"></label>
+                <div class="col-md-10">
+                    @Html.DropDownList("order_status",@Html.GetEnumSelectList<main.Models.orderStatus>())
+                    @Html.ValidationMessageFor(model => model.order_status)
+                </div>
+            </div>
+            <div class="form-group">
+            <label asp-for="type" class="control-label"></label>
+                <div class="col-md-10">
+                    @Html.DropDownList("type",@Html.GetEnumSelectList<main.Models.type>())
+                    @Html.ValidationMessageFor(model => model.type)
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="product_id" class="control-label">Product</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("product_id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.product_id)
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="store_id" class="control-label">Store</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("store_id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.store_id)
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="order_date" class="control-label"></label>
+                <input asp-for="order_date" class="form-control" />
+                <span asp-validation-for="order_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="shipped_date" class="control-label"></label>
+                <input asp-for="shipped_date" class="form-control" />
+                <span asp-validation-for="shipped_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="required_date" class="control-label"></label>
+                <input asp-for="required_date" class="form-control" />
+                <span asp-validation-for="required_date" class="text-danger"></span>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> | <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

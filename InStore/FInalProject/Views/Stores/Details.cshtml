@@ -1,0 +1,84 @@
+﻿@model main.Models.Store
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Store Details</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.store_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.store_name) | 
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.zip_code)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.zip_code)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.free_space)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.free_space)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.min_temperature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.min_temperature)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.max_temperature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.max_temperature)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.relative_humidity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.relative_humidity)
+        </dd>
+        <dt class = "col-sm-2">   
+            <a asp-controller="Staffs" asp-action="Index" asp-route-id="@Model.store_id">Employees</a>
+        </dt>
+        <dd class = "col-sm-10">
+        </dd>
+        <dt class = "col-sm-2">   
+            <a asp-controller="Stocks" asp-action="Index" asp-route-id="@Model.store_id">Products</a>
+        </dt>
+        <dd class = "col-sm-10">
+        </dd>
+
+<br /><br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.store_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+    </dl>
+<div>
+

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<main.Models.Stock>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+    <div class="row pt-3">
+        <div class="col-6">
+            <h1 class="text-primary">Products in Stock</h1>
+		</div>
+
+        <hr>
+<table class="table table-hover content-table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.products.category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.products.brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+ 
+            <td>
+                @Html.DisplayFor(modelItem => item.products.product_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.products.category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.products.brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

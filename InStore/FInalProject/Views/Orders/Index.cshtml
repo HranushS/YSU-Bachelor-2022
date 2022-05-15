@@ -1,0 +1,72 @@
+﻿@model IEnumerable<main.Models.Orders>
+
+@{
+    ViewData["Title"] = "Orders list";
+}
+
+    <div class="row pt-3">
+        <div class="col-6">
+            <h1 class="text-primary">Orders list</h1>
+		</div>
+        <div class="col-6 text-end">
+            <a asp-controller="Orders" asp-action="Create" class="btn btn-primary">
+               <i class="bi bi-plus-circle"></i> &nbsp; Add New Order
+			</a>
+		</div>
+        <hr>
+<table class="table table-hover content-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.order_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.store.store_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer.company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.products.product_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.order_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.store.store_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer.company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.products.product_name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.order_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.order_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.order_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+<br/><br />

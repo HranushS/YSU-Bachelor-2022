@@ -1,0 +1,75 @@
+﻿@model main.Models.Staffs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Staffs</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.first_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.first_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.last_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.last_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.position)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.position)
+        </dd>
+        <dt class = "col-sm-2">
+            Store
+        </dt>
+        <dd class = "col-sm-10">
+            <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model.stores.store_id">@Html.DisplayFor(model => model.stores.store_name)</a>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+        <dd class = "col-sm-2">
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+        @if (@Model.end_date!=null)
+        {
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.end_date)
+        </dd>  
+        }
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Delete" asp-route-id="@Model?.staff_id">Delete</a> |
+    <a asp-controller="Staffs" asp-action="Index" asp-route-id="@Model.store_id">Back to List</a>
+</div>
+
+<br />
+

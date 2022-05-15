@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    //Get object from session
+    var user= HttpContextAccessor.HttpContext.Session.GetString("user");
+    var role= HttpContextAccessor.HttpContext.Session.GetString("role");
+ }
+@using main.Models
+@model IEnumerable<main.Models.Store>
+
+@{
+    ViewData["Title"] = "Stores list";
+}
+
+<div class="container p-1">
+    <div class="row pt-3">
+        <div class="col-6">
+            <h1 class="text-primary">Stores list</h1>
+		</div>
+        @if (user != null)
+        {
+            <div class="col-6 text-end">
+                <a asp-controller="Stores" asp-action="Create" class="btn btn-primary">
+               <i class="bi bi-plus-circle"></i> &nbsp; Add New Store
+			    </a>
+		    </div>
+        }
+        <hr>
+<table class="table content-table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.store_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+
+            <th></th> 
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @if (user != null){
+            <td>
+                <a asp-action="Details" asp-route-id="@item.store_id">@Html.DisplayFor(modelItem => item.store_name)</a>
+            </td>
+            }
+            else{
+                <td>@Html.DisplayFor(modelItem => item.store_name)</td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+     
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            @if (role == "Admin")
+            {
+                    <td>
+                <a asp-action="Edit" asp-route-id="@item.store_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.store_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.store_id">Delete</a>
+                    </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>
+    </div>
+</div>
+    <br /><br />   
+    <br /><br />
+    <br /><br />
+    <br /><br />
+ 
+      
+
+

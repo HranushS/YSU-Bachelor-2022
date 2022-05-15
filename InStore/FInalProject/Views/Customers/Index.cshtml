@@ -1,0 +1,82 @@
+﻿@model IEnumerable<main.Models.Customer>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    //Get object from session
+    var user= HttpContextAccessor.HttpContext.Session.GetString("user");
+    var role= HttpContextAccessor.HttpContext.Session.GetString("role");
+ }
+@{
+    ViewData["Title"] = "Customers list";
+}
+
+    <div class="row pt-3">
+        <div class="col-6">
+            <h1 class="text-primary">Customers list</h1>
+		</div>
+    @if (role == "Admin")
+    {
+        <div class="col-6 text-end">
+            <a asp-controller="Customers" asp-action="Create" class="btn btn-primary">
+               <i class="bi bi-plus-circle"></i> &nbsp; Add New Customer
+			</a>
+		</div>}
+        <hr>
+<table class="table content-table table-hover ">
+    <thead>
+        <tr>@if (user != null)
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.first_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.last_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.address)
+            </th>}
+            <th>
+                @Html.DisplayNameFor(model => model.company)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+                <tr>
+                    @if (user != null)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.first_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.last_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+            </td>}
+            <td>@Html.DisplayFor(modelItem => item.company)</td>
+                    @if (role == "Admin")
+                    {
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.customer_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.customer_id">Delete</a>
+            </td>}
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+<br><br />

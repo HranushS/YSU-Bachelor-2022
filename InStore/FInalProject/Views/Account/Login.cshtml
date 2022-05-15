@@ -1,0 +1,63 @@
+﻿@model main.Models.Authorisation.Login
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<div class="row">
+
+    <div class="col-md-4">
+            <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table>
+            <tr>
+                <td>
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+                </td>
+            </tr>
+                <tr><td>
+                    <div class="form-group">
+            <label asp-for="role" class="control-label"></label>
+                <div class="col-md-10">
+                    @Html.DropDownList("role",@Html.GetEnumSelectList<main.Models.Authorisation.role>())
+                    @Html.ValidationMessageFor(model => model.role)
+                </div>
+            </div>
+                </td></tr>
+            <tr>
+                <td>
+                    @Html.ValidationMessage("Error",null,new{@class="text text-danger"})
+                </td>
+            </tr>   
+                
+            </table>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />  <input type="reset" value="Reset" class="btn btn-primary" />
+            </div>
+            </form>
+    </div>
+    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

@@ -1,0 +1,249 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    //Get object from session
+    var mySessionObject= HttpContextAccessor.HttpContext.Session.GetString("user");
+ }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - models</title>
+@*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@    
+      <link rel="stylesheet" href="~/css/bootswatch1.css" asp-append-version="true" />
+   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/models.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+@*<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand" asp-area="" asp-controller="Home" >
+        InStore
+      </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+           <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Stores" asp-action="Index">Stores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </li>
+      </ul>
+          @Html.Partial("_LoginPartial")
+    </div>
+  </div>
+</nav>*@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">InStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="" asp-controller="Stores" asp-action="Index">Stores</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+           @Html.Partial("_LoginPartial")
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+@*<section class="">
+  <footer class="text-center text-white" style="width:100%;
+  height:30%; 
+  position:absolute;
+  bottom:0;
+  left:0;
+  background-color:#2fa4e7">
+
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        >
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-twitter"></i>
+      </a>
+
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-linkedin"></i>
+      </a>
+
+    </section>
+  </div>
+            @if (mySessionObject == null)
+            {
+                <div class="container p-4 pb-0">
+
+                    <section class="">
+                        <p class="d-flex justify-content-center align-items-center">
+                            <span class="me-3">Register for free</span>
+                            <button type="button" class="btn btn-outline-light btn-rounded">
+                                <ul class="nav navbar-nav navbar-right me-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Sign Up!</a>
+                                    </li> 
+                                </ul>
+                            </button>
+                        </p>
+                    </section>
+                </div>
+            }
+
+
+    <footer class="footer text-white" style="position:absolute;bottom:0;">
+        <div class="container">
+            &copy; 2022 - InStore - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white">Privacy</a>
+        </div>
+    </footer>
+
+  </footer>
+</section>*@
+
+<section class="text-lg-end">
+  <footer class="text-center text-white" style="width:100%;
+  height:auto; 
+  position:relative;
+  bottom:0;
+  left:0;
+  background-color:#2fa4e7">
+
+   <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        >
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-twitter"></i>
+      </a>
+
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-linkedin"></i>
+      </a>
+
+    </section>
+  </div>
+  @if (mySessionObject == null)
+            {
+                <div class="container p-4 pb-0">
+
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Register for free</span>
+          <button type="button" class="btn btn-outline-light btn-rounded">
+          <ul class="nav navbar-nav navbar-right me-auto">
+           <li class="nav-item active">
+          <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Sign Up!</a>
+           </li> 
+           </ul>
+          </button>
+        </p>
+      </section>
+    </div>
+    }
+   <div class="text-center p-3">
+       &copy; 2022 - InStore - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white">Privacy</a>
+  </div>
+    
+
+  </footer>
+</section>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $('body').scrollspy({
+            target: '#mainNavbar',
+            offset: 10
+        });
+    });
+</script>*@
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
